@@ -5,7 +5,8 @@ idk i wanna learn godot so yeah. the alternatives are some random tutorials i'll
 ![screenshot of Konsole with the PNGTuber on top, with a cropped Godot script editor in the background](github/screen.png)
 
 so far i got:
-- Bounce animation and changing sprite triggered by pressing Space/Enter.
+- Detect mic volume to trigger animation.
+- Bounce animation and changing sprite.
 - Transparent window. (at least on KDE Plasma, idk what other desktops support it)
 - The window is always on top.
 
