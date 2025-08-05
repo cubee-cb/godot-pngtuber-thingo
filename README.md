@@ -2,6 +2,8 @@
 
 idk i wanna learn godot so yeah. the alternatives are some random tutorials i'll forget or something like the 25th version of pixel jump.
 
+![screenshot of Konsole with the PNGTuber on top, with a cropped Godot script editor in the background](github/screen.png)
+
 so far i got:
 - Bounce animation and changing sprite triggered by pressing Space/Enter.
 - Transparent window. (at least on KDE Plasma, idk what other desktops support it)
