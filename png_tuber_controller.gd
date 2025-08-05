@@ -24,20 +24,18 @@ func _process(delta: float) -> void:
 	# update velocity
 	velocity.y += gravity;
 
-	# bounce the node
-	#todo: trigger this based on volume/viseme detection
-	#todo: extract visemes from audio device stream
-	var volume = AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index("Record"), 0)
-
+	# enter talking state when there is audio input
+	#todo: somehow detect visemes from audio device stream
+	var recordBus = AudioServer.get_bus_index("Record");
+	var volume = AudioServer.get_bus_peak_volume_left_db(recordBus, 0)
 	if (volume > dbThreshold):
+		# only bounce in the beginning
 		if (talkTimer == 0):
 			jump();
 		talkTimer = talkTimeout;
 
-	# move the offset
+	# update node position
 	offset += velocity * delta;
-	
-	# snap to origin position
 	position = origin + offset;
 	
 	# land at 0 offset
@@ -47,9 +45,9 @@ func _process(delta: float) -> void:
 
 	# animate sprite
 	var pngTuberSprite = $PNGTuberSprite;
-	if (talkTimer > 0):
+	if (talkTimer > 0): # talking
 		pngTuberSprite.frame = 1 + visemeIndex;
-	else:
+	else: # idle
 		pngTuberSprite.frame = 0;
 
 	talkTimer = max(talkTimer - 1, 0);	
@@ -58,6 +56,8 @@ func _process(delta: float) -> void:
 func jump():
 	if (offset == Vector2.ZERO):
 		velocity.y = -impulse;
-		
+
 		# order of 0-6 AA CH MM OO UU RR
-		visemeIndex = random.randi() % 6
+		# for now, just use the first one
+		#visemeIndex = random.randi() % 6
+		visemeIndex = 0

@@ -131,7 +131,7 @@ animations = [{
 script = ExtResource("1_42b0q")
 
 [node name="PNGTuberSprite" type="AnimatedSprite2D" parent="PNGTuberController"]
-position = Vector2(400, 800)
+position = Vector2(400, 860)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_kcg3r")
 offset = Vector2(0, -1024)
