@@ -7,7 +7,7 @@ var gravity = 50;
 var impulse = 400;
 var talkTimeout = 30;
 var talkTimer = 0;
-var dbThreshold = -50;
+var dbThreshold = -45;
 
 var visemeIndex = 0;
 var random = RandomNumberGenerator.new()
