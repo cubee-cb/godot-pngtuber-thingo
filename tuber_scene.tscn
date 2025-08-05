@@ -1,6 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://vj2iql14bk27"]
+[gd_scene load_steps=21 format=3 uid="uid://vj2iql14bk27"]
 
-[ext_resource type="Script" path="res://png_tuber_controller.gd" id="1_42b0q"]
+[ext_resource type="Script" uid="uid://b3ruolpfwe88x" path="res://png_tuber_controller.gd" id="1_42b0q"]
 [ext_resource type="Texture2D" uid="uid://8y8p2nspmppt" path="res://tuber/curinpng.png" id="1_agp4o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_besd4"]
@@ -123,6 +123,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_uj321"]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="PNGTuberController" type="Node2D" parent="."]
@@ -133,3 +135,8 @@ position = Vector2(400, 800)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_kcg3r")
 offset = Vector2(0, -1024)
+
+[node name="Record" type="AudioStreamPlayer2D" parent="PNGTuberController"]
+stream = SubResource("AudioStreamMicrophone_uj321")
+autoplay = true
+bus = &"Record"

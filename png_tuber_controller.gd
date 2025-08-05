@@ -5,8 +5,9 @@ var offset = Vector2.ZERO;
 var velocity = Vector2.ZERO;
 var gravity = 50;
 var impulse = 400;
-var talkTimeout = 60;
+var talkTimeout = 30;
 var talkTimer = 0;
+var dbThreshold = -50;
 
 var visemeIndex = 0;
 var random = RandomNumberGenerator.new()
@@ -26,8 +27,12 @@ func _process(delta: float) -> void:
 	# bounce the node
 	#todo: trigger this based on volume/viseme detection
 	#todo: extract visemes from audio device stream
-	if (Input.is_action_pressed("ui_accept")):
-		jump();
+	var volume = AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index("Record"), 0)
+
+	if (volume > dbThreshold):
+		if (talkTimer == 0):
+			jump();
+		talkTimer = talkTimeout;
 
 	# move the offset
 	offset += velocity * delta;
@@ -53,7 +58,6 @@ func _process(delta: float) -> void:
 func jump():
 	if (offset == Vector2.ZERO):
 		velocity.y = -impulse;
-		talkTimer = talkTimeout;
 		
 		# order of 0-6 AA CH MM OO UU RR
 		visemeIndex = random.randi() % 6
